@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "529309417148",
+    "firebase_url": "https://chat-7306e.firebaseio.com",
+    "project_id": "chat-7306e",
+    "storage_bucket": "chat-7306e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529309417148:android:53c44f067e69cf43",
+        "android_client_info": {
+          "package_name": "com.nikede.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529309417148-btm4oog4lflj22qgj1ai4u8n042d9uoc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nikede.chat",
+            "certificate_hash": "cbc8d8bd3439487da29e54bc022a1df8ce1d0ff7"
+          }
+        },
+        {
+          "client_id": "529309417148-tbmrto5vgmtkl1qdhic1r65pono6jcho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCraZUJi7DSn1thS6T0-UP1zrwsyo-KpjQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529309417148-tbmrto5vgmtkl1qdhic1r65pono6jcho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
