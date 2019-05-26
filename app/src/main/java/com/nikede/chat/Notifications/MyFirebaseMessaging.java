@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.nikede.chat.Crypt.Crypt;
 import com.nikede.chat.MessageActivity;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
@@ -32,6 +33,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String currentUser = preferences.getString("currentuser", "none");
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Log.i("Notification", currentUser + " - " + user);
 
         if (firebaseUser != null && sented.equals(firebaseUser.getUid())) {
             if (!currentUser.equals(user)) {
@@ -50,6 +52,8 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String icon = remoteMessage.getData().get("icon");
         String title = remoteMessage.getData().get("title");
         String body = remoteMessage.getData().get("body");
+        String key = remoteMessage.getData().get("key");
+        body = Crypt.decode(this, body, Integer.parseInt(key));
 
 
         RemoteMessage.Notification notification = remoteMessage.getNotification();
@@ -81,6 +85,8 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String icon = remoteMessage.getData().get("icon");
         String title = remoteMessage.getData().get("title");
         String body = remoteMessage.getData().get("body");
+        String key = remoteMessage.getData().get("key");
+        body = Crypt.decode(this, body, Integer.parseInt(key));
 
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         int j = Integer.parseInt(user.replaceAll("[\\D]", ""));

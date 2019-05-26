@@ -1,6 +1,8 @@
 package com.nikede.chat;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,9 +19,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.nikede.chat.Crypt.Key;
+import com.nikede.chat.Database.KeysBaseHelper;
+import com.nikede.chat.Database.KeysSchema;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -36,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setTitle(getString(R.string.register_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         username = findViewById(R.id.username);
@@ -54,9 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String txt_password = password.getText().toString();
 
                 if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
-                    Toast.makeText(RegisterActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.all_fields_are_required), Toast.LENGTH_SHORT).show();
                 } else if (txt_password.length() < 6){
-                    Toast.makeText(RegisterActivity.this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, getString(R.string.password_length), Toast.LENGTH_SHORT).show();
                 } else {
                     register(txt_username, txt_email, txt_password);
                 }
@@ -83,6 +89,18 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("status", "offline");
                             hashMap.put("search", username.toLowerCase());
 
+                            try {
+                                int key = new Random().nextInt(19) + 2;
+                                long A = (long) Math.pow(5, key);
+                                hashMap.put("key", Long.toString(A % 23));
+
+                                SQLiteDatabase mDatabase = new KeysBaseHelper(RegisterActivity.this).getWritableDatabase();
+                                mDatabase.insert(KeysSchema.KeysTable.NAME, null, getContentValues(userid, key));
+                                Key.setKey(key);
+                            } catch (Exception e) {
+                                Toast.makeText(RegisterActivity.this, getString(R.string.smth_went_wrong), Toast.LENGTH_SHORT).show();
+                            }
+
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -95,9 +113,18 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            Toast.makeText(RegisterActivity.this, "You can't register with this email or password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, getString(R.string.cant_register), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+
+
+    private static ContentValues getContentValues(String userId, Integer key) {
+        ContentValues values = new ContentValues();
+        values.put(KeysSchema.KeysTable.Cols.sUserId, userId);
+        values.put(KeysSchema.KeysTable.Cols.sKey, key.toString());
+        return values;
     }
 }

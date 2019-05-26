@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nikede.chat.Crypt.Key;
+import com.nikede.chat.Database.KeysCursorWrapper;
 import com.nikede.chat.Fragments.ChatsFragment;
 import com.nikede.chat.Fragments.ProfileFragment;
 import com.nikede.chat.Fragments.UsersFragment;
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        KeysCursorWrapper cursor = KeysCursorWrapper.queryKeys(MainActivity.this, null, null);
+        cursor.moveToFirst();
+        Key.setKey(cursor.getKey());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 int unread = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Chat chat = snapshot.getValue(Chat.class);
+                    chat.setContext(MainActivity.this);
                     if (chat == null) {
                         return;
                     }
@@ -97,13 +105,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (unread == 0) {
-                    viewPagerAdapter.addFragment(new ChatsFragment(), "Chats");
+                    viewPagerAdapter.addFragment(new ChatsFragment(), getString(R.string.chats));
                 } else {
-                    viewPagerAdapter.addFragment(new ChatsFragment(), "(" + unread + ") Chats");
+                    viewPagerAdapter.addFragment(new ChatsFragment(), "(" + unread + ") " + getString(R.string.chats));
                 }
 
-                viewPagerAdapter.addFragment(new UsersFragment(), "Users");
-                viewPagerAdapter.addFragment(new ProfileFragment(), "Profile");
+                viewPagerAdapter.addFragment(new UsersFragment(), getString(R.string.users));
+                viewPagerAdapter.addFragment(new ProfileFragment(), getString(R.string.profile));
 
                 viewPager.setAdapter(viewPagerAdapter);
 

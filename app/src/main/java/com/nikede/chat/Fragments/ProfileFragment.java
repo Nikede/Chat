@@ -145,7 +145,7 @@ public class ProfileFragment extends Fragment {
 
                         pd.dismiss();
                     } else {
-                        Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getString(R.string.failed), Toast.LENGTH_SHORT).show();
                         pd.dismiss();
                     }
                 }
@@ -157,7 +157,7 @@ public class ProfileFragment extends Fragment {
                 }
             });
         } else {
-            Toast.makeText(getContext(), "No image selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.no_image), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -170,7 +170,7 @@ public class ProfileFragment extends Fragment {
             imageUri = data.getData();
 
             if(uploadTask != null && uploadTask.isInProgress()) {
-                Toast.makeText(getContext(), "Upload in progress", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), getString(R.string.upload_in_progress), Toast.LENGTH_SHORT).show();
             } else {
                 uploadImage();
             }

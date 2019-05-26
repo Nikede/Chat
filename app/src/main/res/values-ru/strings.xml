@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">New Talk</string>
+    <string name="all_fields_are_required">Требуется заполнить все поля!</string>
+    <string name="auth_failed">Ошибка авторизации</string>
+    <string name="cant_register">Вы не можете зарегестрироваться с такими почтой/паролем</string>
+    <string name="check_email">Пожалуйста, проверьте Вашу почту</string>
+    <string name="create_a_new_account">Создать новый аккаунт</string>
+    <string name="email">Почта</string>
+    <string name="empy_message">Вы не можете отправить пустое сообщение</string>
+    <string name="enter">Войти</string>
+    <string name="failed">Не удалось!</string>
+    <string name="forgot_your_password">Забыли Ваш пароль?</string>
+    <string name="login">Логин</string>
+    <string name="no_image">Картинка не выбрана</string>
+    <string name="password">Пароль</string>
+    <string name="password_length">Пароль должен быть не менее 6-и символов</string>
+    <string name="profile">Профиль</string>
+    <string name="register">Зарегестрироваться</string>
+    <string name="register_title">Регистрация</string>
+    <string name="reset">Восстановить</string>
+    <string name="reset_help">Нажимая \"ВОССТАНОВИТЬ, Вы получите восстановление пароля на Вашу почту</string>
+    <string name="search">Поиск...</string>
+    <string name="smth_went_wrong">Что-то пошло не так</string>
+    <string name="type_a_message">Введите сообщение...</string>
+    <string name="upload_in_progress">Загрузка в прогрессе</string>
+    <string name="username">Имя профиля</string>
+    <string name="your_email">Ваша почта</string>
+    <string name="chats">Чаты</string>
+    <string name="logout">Выйти</string>
+    <string name="users">Пользователи</string>
+</resources>

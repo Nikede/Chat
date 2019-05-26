@@ -1,6 +1,35 @@
 <resources>
-    <string name="app_name">Chat</string>
+    <string name="app_name">New Talk</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="type_a_message">Type a message...</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="your_email">Your Email</string>
+    <string name="reset">Reset</string>
+    <string name="reset_help">By clicking RESET, you will receive an email to reset your password</string>
+    <string name="new_talk" translatable="false">New Talk</string>
+    <string name="search">Search...</string>
+    <string name="check_email">Please check your Email</string>
+    <string name="cant_register">You can\'t register with this email or password</string>
+    <string name="password_length">Password must be at least 6 characters</string>
+    <string name="register_title">Register</string>
+    <string name="empy_message">You can\'t send an empty message</string>
+    <string name="smth_went_wrong">Something went wrong</string>
+    <string name="auth_failed">Authentication failed!</string>
+    <string name="all_fields_are_required">All fields are required!</string>
+    <string name="failed">Failed!</string>
+    <string name="no_image">No image selected</string>
+    <string name="upload_in_progress">Upload in progress</string>
+    <string name="enter">login</string>
+    <string name="password">Password</string>
+    <string name="register">register</string>
+    <string name="chats">Chats</string>
+    <string name="users">Users</string>
+    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
 </resources>

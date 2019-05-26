@@ -13,7 +13,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.nikede.chat.MessageActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.nikede.chat.Model.Chat;
 import com.nikede.chat.Model.User;
 import com.nikede.chat.R;
@@ -28,6 +32,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private Context mContext;
     private List<Chat> mChat;
     private String imageurl;
+
+    private User user;
 
     FirebaseUser fuser;
 
@@ -52,7 +58,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder viewHolder, int i) {
 
-        Chat chat = mChat.get(i);
+        final Chat chat = mChat.get(i);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(chat.getReceiver());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user = dataSnapshot.getValue(User.class);
+                chat.setKey(Integer.parseInt(user.getKey()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         viewHolder.show_message.setText(chat.getMessage());
 

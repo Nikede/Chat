@@ -6,13 +6,15 @@ public class Data {
     private String body;
     private String title;
     private String sented;
+    private String key;
 
-    public Data(String user, int icon, String body, String title, String sented) {
+    public Data(String user, int icon, String body, String title, String sented, String key) {
         this.user = user;
         this.icon = icon;
         this.body = body;
         this.title = title;
         this.sented = sented;
+        this.key = key;
     }
 
     public Data() {
@@ -56,5 +58,13 @@ public class Data {
 
     public void setSented(String sented) {
         this.sented = sented;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }
