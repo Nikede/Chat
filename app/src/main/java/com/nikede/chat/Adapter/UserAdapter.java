@@ -2,7 +2,6 @@ package com.nikede.chat.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -146,11 +145,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                     default:
                         last_msg.setText(theLastMessage);
-                        if (!isSeen) {
-                            last_msg.setTextColor(Color.RED);
-                        } else {
-                            last_msg.setTextColor(Color.parseColor("#226e6e"));
-                        }
                         break;
 
                 }

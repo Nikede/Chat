@@ -34,19 +34,9 @@ import com.nikede.chat.Notifications.Data;
 import com.nikede.chat.Notifications.MyResponse;
 import com.nikede.chat.Notifications.Sender;
 import com.nikede.chat.Notifications.Token;
-
-import org.bouncycastle.util.encoders.Base64;
-
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -242,7 +232,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, message, "New Message from " + username,
+                    Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, message, username,
                             userid, key);
 
 

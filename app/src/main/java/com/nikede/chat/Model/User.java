@@ -1,13 +1,5 @@
 package com.nikede.chat.Model;
 
-import org.bouncycastle.util.encoders.Base64;
-
-import java.security.Key;
-import java.security.KeyFactory;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
-
 public class User {
 
     private String id;

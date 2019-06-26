@@ -19,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.nikede.chat.Crypt.Crypt;
 import com.nikede.chat.MessageActivity;
+import com.nikede.chat.R;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 
@@ -51,6 +52,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String user = remoteMessage.getData().get("user");
         String icon = remoteMessage.getData().get("icon");
         String title = remoteMessage.getData().get("title");
+        title = getApplicationContext().getString(R.string.New_message_from) + title;
         String body = remoteMessage.getData().get("body");
         String key = remoteMessage.getData().get("key");
         body = Crypt.decode(this, body, Integer.parseInt(key));
@@ -84,6 +86,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String user = remoteMessage.getData().get("user");
         String icon = remoteMessage.getData().get("icon");
         String title = remoteMessage.getData().get("title");
+        title = getApplicationContext().getString(R.string.New_message_from) + title;
         String body = remoteMessage.getData().get("body");
         String key = remoteMessage.getData().get("key");
         body = Crypt.decode(this, body, Integer.parseInt(key));

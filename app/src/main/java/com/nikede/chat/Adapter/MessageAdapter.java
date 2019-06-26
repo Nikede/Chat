@@ -1,7 +1,6 @@
 package com.nikede.chat.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -84,9 +83,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         if (i == mChat.size() - 1) {
             if (chat.isIsseen()) {
-                viewHolder.txt_seen.setText("Seen");
+                viewHolder.txt_seen.setText(mContext.getString(R.string.Seen));
             } else {
-                viewHolder.txt_seen.setText("Delivered");
+                viewHolder.txt_seen.setText(mContext.getString(R.string.Delivered));
             }
         } else {
             viewHolder.txt_seen.setVisibility(View.GONE);

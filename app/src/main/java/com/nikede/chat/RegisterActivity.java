@@ -90,11 +90,12 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("search", username.toLowerCase());
 
                             try {
-                                int key = new Random().nextInt(19) + 2;
+                                int key = new Random().nextInt(15) + 2;
                                 long A = (long) Math.pow(5, key);
                                 hashMap.put("key", Long.toString(A % 23));
 
                                 SQLiteDatabase mDatabase = new KeysBaseHelper(RegisterActivity.this).getWritableDatabase();
+                                mDatabase.delete(KeysSchema.KeysTable.NAME, null, null);
                                 mDatabase.insert(KeysSchema.KeysTable.NAME, null, getContentValues(userid, key));
                                 Key.setKey(key);
                             } catch (Exception e) {

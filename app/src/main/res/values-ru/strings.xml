@@ -29,4 +29,7 @@
     <string name="chats">Чаты</string>
     <string name="logout">Выйти</string>
     <string name="users">Пользователи</string>
+    <string name="Delivered">Доставлено</string>
+    <string name="New_message_from">"Новое сообщение от "</string>
+    <string name="Seen">Просмотрено</string>
 </resources>

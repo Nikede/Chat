@@ -32,4 +32,7 @@
     <string name="users">Users</string>
     <string name="logout">Logout</string>
     <string name="profile">Profile</string>
+    <string name="Seen">Seen</string>
+    <string name="Delivered">Delivered</string>
+    <string name="New_message_from">"New Message from "</string>
 </resources>

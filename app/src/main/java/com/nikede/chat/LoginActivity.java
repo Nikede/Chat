@@ -25,12 +25,6 @@ import com.nikede.chat.Database.KeysBaseHelper;
 import com.nikede.chat.Database.KeysCursorWrapper;
 import com.nikede.chat.Database.KeysSchema;
 import com.rengwuxian.materialedittext.MaterialEditText;
-
-import org.bouncycastle.util.encoders.Base64;
-
-import java.security.Key;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -50,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle(getString(R.string.login));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         auth = FirebaseAuth.getInstance();
@@ -92,19 +86,20 @@ public class LoginActivity extends AppCompatActivity {
                                             assert firebaseUser != null;
                                             String userid = firebaseUser.getUid();
                                             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
-                                            HashMap<String, String> hashMap = new HashMap<>();
+                                            HashMap<String, Object> hashMap = new HashMap<>();
                                             try {
                                                 int key = new Random().nextInt(19) + 2;
                                                 int A = (int) Math.pow(5, key);
                                                 hashMap.put("key", Integer.toString(A % 23));
 
                                                 SQLiteDatabase mDatabase = new KeysBaseHelper(LoginActivity.this).getWritableDatabase();
+                                                mDatabase.delete(KeysSchema.KeysTable.NAME, null, null);
                                                 mDatabase.insert(KeysSchema.KeysTable.NAME, null, getContentValues(userid, key));
                                             } catch (Exception e) {
                                                 Toast.makeText(LoginActivity.this, getString(R.string.smth_went_wrong), Toast.LENGTH_SHORT).show();
                                             }
 
-                                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            reference.updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
@@ -116,6 +111,10 @@ public class LoginActivity extends AppCompatActivity {
                                                 }
                                             });
                                         }
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent);
+                                        finish();
                                     } else {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_SHORT).show();
                                     }
